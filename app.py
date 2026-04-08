@@ -22,8 +22,6 @@ def index() :
 
 @app.route("/predict", methods=['POST'])
 def predict() :
-    model1 = joblib.load('model1.pkl')
-    model2 = joblib.load('model2.pkl')
     
     study_hours = float(request.form.get("study_hours"))
     attendance = float(request.form.get("attendance"))
@@ -46,4 +44,5 @@ def predict() :
 
 
 if __name__ == "__main__" :
-    app.run(debug=True)
+        port = int(os.environ.get("PORT", 10000))
+        app.run(host="0.0.0.0", port=port, debug=True)
