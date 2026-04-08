@@ -7,7 +7,9 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 
-df = pd.read_csv('unbiased_student_performance.csv')
+url = "https://drive.google.com/file/d/1w_dXCvxTbDF9l4Ue-XUPEodBlZQ0r9Os/view?usp=sharing"
+
+df = pd.read_csv(url)
 
 df = df.dropna(subset=['Gender','Result', 'Extra_Activities','Study_Hours', 'Attendance', 'Internet_Usage', 'Marks'])
 df['Parental_Education'] = df['Parental_Education'].fillna('Unknown')
