@@ -21,26 +21,23 @@ def index() :
     return render_template('index.html')
 
 @app.route("/predict", methods=['POST'])
-def predict() :
-    
-    study_hours = float(request.form.get("study_hours"))
-    attendance = float(request.form.get("attendance"))
-    internetUsage = float(request.form.get('internetUsage'))
+def predict():
+    try:
+        study_hours = float(request.form.get("study_hours") or 0)
+        attendance = float(request.form.get("attendance") or 0)
+        internetUsage = float(request.form.get("internetUsage") or 0)
 
-    features = [[study_hours, attendance, internetUsage]]
+        features = [[study_hours, attendance, internetUsage]]
 
-    marks = round(model1.predict(features)[0],2)
-    result = model2.predict(features)[0]
-    result_txt = ''
+        marks = round(model1.predict(features)[0], 2)
+        result = model2.predict(features)[0]
 
-    if result == 1 :
-        result_txt = 'Pass!'
-    elif result == 0: 
-        result_txt = 'Fail!'
+        result_txt = 'Pass!' if result == 1 else 'Fail!'
 
-    generate_plots()
+        return render_template('index.html', marks=marks, result=result_txt)
 
-    return render_template('index.html', marks=marks, result=result_txt)
+    except Exception as e:
+        return f"ERROR: {str(e)}"
 
 
 if __name__ == "__main__" :
