@@ -7,7 +7,7 @@ from sklearn.preprocessing import LabelEncoder
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestRegressor
 
-url = "https://drive.google.com/file/d/1w_dXCvxTbDF9l4Ue-XUPEodBlZQ0r9Os/view?usp=sharing"
+url = "https://drive.google.com/uc?id=1w_dXCvxTbDF9l4Ue-XUPEodBlZQ0r9Os"
 
 df = pd.read_csv(url)
 
